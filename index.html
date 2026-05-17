@@ -40,7 +40,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <img src="./static/images/agenticpay/logo-agenticpay.png" alt="AgenticPay logo" class="agenticpay-logo">
-          <h1 class="title is-2 publication-title"><em>AgenticPay</em>: A Multimodal Benchmark for LLM-Powered Negotiation in Multi-Agent Commerce</h1>
+          <h1 class="title is-2 publication-title">From Chats to Markets: <em>AgenticPay</em> for LLM-Powered Negotiation in Multi-Agent Commerce</h1>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">Xianyang Liu<sup>1</sup>,</span>
@@ -97,7 +97,10 @@
           <h2 class="title is-3 section-title">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              AgenticPay is a framework and benchmark for evaluating LLM/VLM agents in realistic buyer-seller commerce. It extends negotiation beyond text-only, bilateral price haggling into multimodal, multi-dimensional contract negotiation across four real-world scenarios: E-commerce, Food Delivery, Ride-hailing, and Apartment Rental. The benchmark covers eight market topologies, from one-to-one bargaining to many-to-many markets, while keeping a Gymnasium-like API for reproducible evaluation and extensible environment registration.
+              Agents based on large language models are increasingly expected to autonomously handle negotiation and transactions. However, existing benchmarks predominantly focus on text-only, bilateral, zero-sum price haggling, failing to capture the complexity of real-world commerce. To address this gap, we introduce <em>AgenticPay</em>, a unified framework and benchmark for evaluating how well multimodal agents reach high-welfare, multi-dimensional agreements in realistic markets. Built around four core components (<em>Environments</em>, <em>Tasks</em>, <em>Agents</em>, and <em>Metrics</em>), <em>AgenticPay</em> comprises <strong>160 multimodal tasks</strong> spanning <strong>4 real-world business scenarios</strong> (E-commerce, Food Delivery, Ride-hailing, and Apartment Rental) and <strong>8 market topologies</strong>, scaling from 1-to-1 bargaining to many-to-many (N-to-N) competitive markets.
+            </p>
+            <p>
+              Beyond price haggling, agents must read product images, infer each opponent's hidden preferences, and trade off multiple binding contract terms (e.g., price, lease duration, return policy, delivery speed). Agents communicate through multi-round natural-language dialogue, with each turn proposing or revising a full contract, and outcomes are scored by a utility-based framework that rewards agreements maximizing joint welfare. Evaluations on state-of-the-art proprietary (GPT-5.4, Claude Sonnet 4.6, Gemini 3.1 Pro Preview) and open-weight (Qwen3-VL-32B-Instruct, InternVL3-38B) multimodal models reveal substantial gaps in non-zero-sum value creation and market reasoning: even the strongest agent (Gemini 3.1 Pro Preview) reaches a GlobalScore of only <strong>42.3/100</strong>, and performance consistently degrades as markets scale from bilateral to multi-sided, with the average GlobalScore dropping by 5.7 points and open-weight models suffering the largest declines (up to 11.5 points). These findings establish <em>AgenticPay</em> as a foundational testbed for multimodal agentic commerce.
             </p>
           </div>
         </div>
@@ -116,12 +119,14 @@
 
     <div class="content">
       <ul>
-        <li><strong>LLM/VLM-based agents:</strong> Buyer and seller agents powered by text and vision-language models, including OpenAI-compatible APIs, vLLM, SGLang, and Qwen3-VL.</li>
-        <li><strong>Multimodal product grounding:</strong> Tasks can include product images, visual route context, listings, menus, and rich text attributes.</li>
-        <li><strong>Multi-dimensional contracts:</strong> Agents negotiate complete JSON contracts with price, continuous terms, and discrete terms instead of a single scalar price.</li>
-        <li><strong>Multi-turn conversations:</strong> The benchmark supports extended natural-language negotiation dialogues with structured contract proposals.</li>
-        <li><strong>Utility-based metrics:</strong> GlobalScore, BuyerScore, and SellerScore evaluate feasibility, welfare, surplus split, and efficiency.</li>
-        <li><strong>160 benchmark tasks:</strong> Four scenarios times eight market topologies times five tasks, with additional legacy and demo scripts.</li>
+        <li><strong>Unified framework with four core components:</strong> <em>Environments</em>, <em>Tasks</em>, <em>Agents</em>, and <em>Metrics</em>, exposed through a Gymnasium-like API for reproducible evaluation and easy extension.</li>
+        <li><strong>Multimodal product grounding:</strong> Tasks include product images, visual route context, listings, menus, and rich text attributes that agents must read and reason over.</li>
+        <li><strong>Multi-dimensional binding contracts:</strong> Agents negotiate full contracts with price plus binding terms such as lease duration, return policy, delivery speed, and packaging, rather than a single scalar price.</li>
+        <li><strong>Opponent modeling under hidden preferences:</strong> Buyers and sellers have private valuations and constraints, requiring explicit mental models of the opponent for non-zero-sum value creation.</li>
+        <li><strong>Multi-turn natural-language dialogue:</strong> Each turn proposes or revises a complete contract through structured natural-language messages.</li>
+        <li><strong>Utility-based metrics:</strong> GlobalScore, BuyerScore, and SellerScore evaluate feasibility, welfare, surplus split, and negotiation efficiency.</li>
+        <li><strong>160 multimodal tasks across 4 scenarios &amp; 8 topologies:</strong> E-commerce, Food Delivery, Ride-hailing, and Apartment Rental scenarios, scaling from 1-to-1 bargaining to many-to-many (N-to-N) markets.</li>
+        <li><strong>Broad model support:</strong> Buyer and seller agents powered by text and vision-language models, including OpenAI-compatible APIs, vLLM, SGLang, and Qwen3-VL.</li>
       </ul>
     </div>
 
@@ -132,7 +137,7 @@
     </div>
 
     <p>
-      AgenticPay studies realistic commerce settings across E-commerce, Food Delivery, Ride-hailing, and Apartment Rental. These scenarios instantiate single-buyer/single-seller negotiation, multi-product settings, multi-seller competition, multi-buyer demand, and more complex many-to-many interactions.
+      AgenticPay covers <strong>4 real-world business scenarios</strong> (E-commerce, Food Delivery, Ride-hailing, and Apartment Rental) instantiated across <strong>8 market topologies</strong>, ranging from 1-to-1 bilateral bargaining, to 1-to-N competitive markets where one buyer or seller faces multiple counterparties, up to N-to-N matching markets with many buyers and sellers interacting in parallel.
     </p>
 
     <img src="./static/images/agenticpay/figure_2_tasks.png" alt="AgenticPay scenario and task categories" class="teaser-image">
@@ -145,7 +150,10 @@
     </div>
 
     <p>
-      AgenticPay evaluates negotiation outcomes through contract feasibility, buyer utility, seller utility, social welfare, agreement quality, and negotiation efficiency. The benchmark is designed to make commerce agents measurable under multimodal information, private preferences, market competition, and structured contract constraints.
+      AgenticPay scores negotiations with a utility-based framework that rewards agreements maximizing joint welfare, reporting feasibility, buyer and seller utility, surplus split, and negotiation efficiency. We evaluate state-of-the-art proprietary models (<strong>GPT-5.4</strong>, <strong>Claude Sonnet 4.6</strong>, <strong>Gemini 3.1 Pro Preview</strong>) and open-weight multimodal models (<strong>Qwen3-VL-32B-Instruct</strong>, <strong>InternVL3-38B</strong>).
+    </p>
+    <p>
+      Results reveal substantial gaps in non-zero-sum value creation and market reasoning: even the strongest agent, Gemini 3.1 Pro Preview, reaches a GlobalScore of only <strong>42.3/100</strong>. Performance also consistently degrades as markets scale from bilateral to multi-sided, with the average GlobalScore dropping by <strong>5.7 points</strong>, and open-weight models suffering the largest declines (up to <strong>11.5 points</strong>).
     </p>
   </div>
 </section>
@@ -154,7 +162,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{liu2026agenticpay,
-  title={AgenticPay: A Multi-Agent LLM Negotiation System for Buyer-Seller Transactions},
+  title={From Chats to Markets: AgenticPay for LLM-Powered Negotiation in Multi-Agent Commerce},
   author={Liu, Xianyang and Gu, Shangding and Song, Dawn},
   journal={arXiv preprint arXiv:2602.06008},
   year={2026}
